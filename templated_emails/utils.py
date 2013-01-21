@@ -15,13 +15,11 @@ except ImportError:
     task = lambda f: f
 
 try:
-    from django.contrib.auth.models import get_user_model as gum
-
+    from django.contrib.auth import get_user_model as gum
     def get_user_model():
-        return gum
-except ImportError:
+        return gum()
+except ImportError,e:
     from django.contrib.auth.models import User
-
     def get_user_model():
         return User
 
